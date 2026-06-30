@@ -8,12 +8,11 @@ import {
   useState,
 } from "react";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Check } from "lucide-react";
+import { ChevronLeft, ChevronRight, Check, Mic, Phone } from "lucide-react";
 import { motion, useReducedMotion, type Transition } from "framer-motion";
 import { Container } from "./Container";
 import { SectionHeader } from "./SectionHeader";
 import { Button } from "./Button";
-import { iconMap } from "@/lib/icon-map";
 import { cn } from "@/lib/utils";
 import { whyChoose } from "@/content/homepage";
 import type { WhyChooseTone } from "@/content/types";
@@ -24,32 +23,25 @@ const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
 
 // Tone styles mirror the soft service-card palette for a cohesive homepage.
-const toneStyles: Record<
-  WhyChooseTone,
-  { card: string; panel: string; badge: string; check: string }
-> = {
-  blue: {
-    card: "bg-blue-50 border-blue-100",
-    panel: "bg-blue-100/50 ring-blue-200/50",
-    badge: "bg-blue-100 text-blue-700 ring-blue-200/70",
-    check: "text-blue-600",
-  },
-  teal: {
-    card: "bg-teal-50 border-teal-100",
-    panel: "bg-teal-100/50 ring-teal-200/50",
-    badge: "bg-teal-100 text-teal-700 ring-teal-200/70",
-    check: "text-teal-600",
-  },
-  indigo: {
-    card: "bg-indigo-50 border-indigo-100",
-    panel: "bg-indigo-100/50 ring-indigo-200/50",
-    badge: "bg-indigo-100 text-indigo-700 ring-indigo-200/70",
-    check: "text-indigo-600",
-  },
+const cardToneStyles: Record<WhyChooseTone, string> = {
+  blue: "bg-blue-50 border-blue-100",
+  teal: "bg-teal-50 border-teal-100",
+  indigo: "bg-indigo-50 border-indigo-100",
 };
 
 const arrowBase =
   "inline-flex items-center justify-center rounded-full border border-line bg-surface text-navy shadow-card transition hover:border-brand hover:text-brand focus-visible:border-brand focus-visible:text-brand";
+
+const imagePositions = [
+  "object-center",
+  "object-left",
+  "object-left",
+] as const;
+
+const copyOverlayStyles: Partial<Record<WhyChooseTone, string>> = {
+  teal: "right-[7%] top-1/2 w-[37%] -translate-y-1/2",
+  indigo: "right-[8%] top-1/2 w-[38%] -translate-y-1/2",
+};
 
 export function WhyChooseSection() {
   const reduce = useReducedMotion();
@@ -174,8 +166,7 @@ export function WhyChooseSection() {
             transition={motionTransition}
           >
             {cards.map((card, i) => {
-              const tone = toneStyles[card.tone];
-              const Icon = iconMap[card.icon];
+              const tone = cardToneStyles[card.tone];
               const active = i === index;
               return (
                 <div
@@ -191,62 +182,86 @@ export function WhyChooseSection() {
                     animate={{ scale: active ? 1 : 0.94, opacity: active ? 1 : 0.55 }}
                     transition={motionTransition}
                     className={cn(
-                      "grid h-full gap-6 rounded-3xl border p-6 shadow-card sm:p-8 lg:grid-cols-2 lg:items-center lg:gap-10 lg:p-10",
-                      tone.card,
+                      "relative aspect-[16/9] overflow-hidden rounded-3xl border shadow-card",
+                      tone,
                     )}
                   >
-                    {/* Visual panel. Generated art is normalised to 16:9 with a
-                        baked pastel background, so object-cover fills the panel
-                        edge-to-edge with no letterboxing or corner artefacts. */}
-                    <div
-                      className={cn(
-                        "overflow-hidden rounded-2xl ring-1",
-                        tone.panel,
-                      )}
-                    >
-                      <div className="relative aspect-[16/9]">
-                        <Image
-                          src={card.image}
-                          alt={card.imageAlt}
-                          fill
-                          sizes="(max-width: 1024px) 88vw, 420px"
-                          className="object-cover"
-                        />
-                      </div>
-                    </div>
+                    <Image
+                      src={card.image}
+                      alt={card.imageAlt}
+                      fill
+                      sizes="(max-width: 1024px) 92vw, 860px"
+                      className={cn("object-cover", imagePositions[i] ?? "object-center")}
+                      priority={i === 0}
+                    />
 
-                    {/* Text */}
-                    <div className="min-w-0">
-                      <span
+                    {card.tone === "indigo" ? (
+                      <div
+                        className="absolute bottom-[10%] left-[4%] z-10 hidden h-[39%] w-[17%] min-w-[142px] rounded-2xl bg-white/98 p-4 text-center shadow-[var(--shadow-card)] ring-1 ring-indigo-100 lg:flex lg:flex-col lg:items-center"
+                        aria-hidden="true"
+                      >
+                        <span className="mx-auto flex h-9 w-9 items-center justify-center rounded-full bg-brand text-xs font-extrabold text-white">
+                          ET
+                        </span>
+                        <p className="mt-2 text-xs font-semibold text-muted">
+                          30:21
+                        </p>
+                        <p className="mt-1 text-sm font-extrabold leading-tight text-navy">
+                          EasyTax support
+                        </p>
+                        <p className="mt-1 text-xs font-medium text-muted">
+                          CA-led help
+                        </p>
+                        <div className="mt-auto flex items-center gap-4">
+                          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-100 text-slate-500">
+                            <Mic className="h-5 w-5" />
+                          </span>
+                          <span className="flex h-11 w-11 items-center justify-center rounded-full bg-orange-500 text-white">
+                            <Phone className="h-5 w-5" />
+                          </span>
+                        </div>
+                      </div>
+                    ) : null}
+
+                    {copyOverlayStyles[card.tone] ? (
+                      <div
                         className={cn(
-                          "inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold ring-1",
-                          tone.badge,
+                          "absolute z-10 hidden rounded-2xl bg-white/94 p-5 shadow-[var(--shadow-card)] ring-1 ring-white/80 lg:block",
+                          copyOverlayStyles[card.tone],
                         )}
                       >
-                        <Icon className="h-4 w-4" strokeWidth={1.75} aria-hidden="true" />
-                        {card.tag}
-                      </span>
-                      <h3 className="mt-4 text-2xl font-bold text-navy sm:text-3xl">
-                        {card.title}
-                      </h3>
-                      <p className="mt-3 text-base leading-relaxed text-muted">
-                        {card.body}
-                      </p>
-                      <ul className="mt-5 space-y-3">
+                        <h3 className="text-2xl font-bold leading-tight text-navy">
+                          {card.title}
+                        </h3>
+                        <p className="mt-3 text-sm leading-relaxed text-muted">
+                          {card.body}
+                        </p>
+                        <ul className="mt-4 space-y-2.5">
+                          {card.points.map((point) => (
+                            <li
+                              key={point}
+                              className="flex items-start gap-2.5 text-sm text-ink"
+                            >
+                              <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-surface shadow-[0_1px_2px_rgba(11,31,58,0.08)]">
+                                <Check
+                                  className="h-3 w-3 text-brand"
+                                  strokeWidth={2.75}
+                                  aria-hidden="true"
+                                />
+                              </span>
+                              <span>{point}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ) : null}
+
+                    <div className="sr-only">
+                      <h3>{card.title}</h3>
+                      <p>{card.body}</p>
+                      <ul>
                         {card.points.map((point) => (
-                          <li
-                            key={point}
-                            className="flex items-start gap-3 text-sm text-ink"
-                          >
-                            <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-surface shadow-[0_1px_2px_rgba(11,31,58,0.08)]">
-                              <Check
-                                className={cn("h-3 w-3", tone.check)}
-                                strokeWidth={2.75}
-                                aria-hidden="true"
-                              />
-                            </span>
-                            <span>{point}</span>
-                          </li>
+                          <li key={point}>{point}</li>
                         ))}
                       </ul>
                     </div>
