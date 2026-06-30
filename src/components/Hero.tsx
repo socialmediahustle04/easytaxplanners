@@ -62,8 +62,6 @@ export function Hero() {
                   ))}
                 </span>
                 <span>4.8</span>
-                <span className="h-3.5 w-px bg-line sm:h-4" aria-hidden="true" />
-                <span className="min-w-0 flex-1 truncate text-left underline decoration-line underline-offset-2 sm:flex-none sm:text-center">{hero.trustPills[2]}</span>
               </div>
             </motion.div>
 

@@ -9,17 +9,10 @@ export const siteConfig = {
   // Used for canonical URLs, sitemap and Open Graph. Update before launch.
   url: "https://www.easytaxplanners.in",
 
-  // ---------------------------------------------------------------------------
-  // PLACEHOLDER CONTACT DETAILS — REPLACE BEFORE LAUNCH
-  // The WhatsApp number below is a non-working placeholder. Swap in the real
-  // business WhatsApp number (digits only, with country code) in `whatsappNumber`
-  // and a human-friendly version in `whatsappDisplay`.
-  // ---------------------------------------------------------------------------
-  whatsappNumber: "910000000000", // PLACEHOLDER: e.g. 919876543210
-  whatsappDisplay: "+91 00000 00000", // PLACEHOLDER
+  whatsappNumber: "919797507595",
+  whatsappDisplay: "+91 97975 07595",
   email: "hello@easytaxplanners.in", // PLACEHOLDER
-  contactNote:
-    "Replace the placeholder WhatsApp number and email in src/content/site-config.ts before going live.",
+  contactNote: "WhatsApp-first support for tax and compliance enquiries.",
 
   nav: [
     { label: "Home", href: "/" },

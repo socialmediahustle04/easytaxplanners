@@ -14,7 +14,7 @@ export const hero = {
   // Retained for any other references to the original hero CTAs.
   primaryCta: { label: "Get Compliance Help", href: "/contact" },
   secondaryCta: { label: "View Services", href: "/services" },
-  trustPills: ["8+ yrs CA experience", "4.8 client trust", "Jammu & online support"],
+  trustPills: ["8+ yrs CA experience", "4.8 client trust"],
   reassurance: "Maximum Tax Clarity, Guaranteed",
   support: "Received a notice? We guide the next step before you panic or pay twice.",
   actionCards: [

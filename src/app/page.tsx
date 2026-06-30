@@ -5,13 +5,13 @@ import { Section } from "@/components/Section";
 import { Container } from "@/components/Container";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ServiceCard } from "@/components/ServiceCard";
-import { TrustBadge } from "@/components/TrustBadge";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import { ResourceCard } from "@/components/ResourceCard";
 import { CTASection } from "@/components/CTASection";
 import { WhyChooseSection } from "@/components/WhyChooseSection";
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/Button";
+import { AnimatedTrustStrip } from "@/components/AnimatedTrustStrip";
 import { iconMap } from "@/lib/icon-map";
 import { homepageOfferings } from "@/content/offerings";
 import { trustItems } from "@/content/trust";
@@ -33,13 +33,7 @@ export default function HomePage() {
       <Hero />
 
       {/* Trust strip (directly below hero, not inside it) */}
-      <div className="border-b border-line bg-surface">
-        <Container className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4 py-5">
-          {trustItems.map((item) => (
-            <TrustBadge key={item.id} item={item} variant="compact" />
-          ))}
-        </Container>
-      </div>
+      <AnimatedTrustStrip items={trustItems} />
 
       {/* Core services */}
       <Section>
@@ -120,9 +114,17 @@ export default function HomePage() {
           </div>
           <div className="rounded-2xl bg-white p-6 shadow-card">
             <div className="grid gap-3">
-              {trustItems.map((item) => (
-                <TrustBadge key={item.id} item={item} variant="compact" />
-              ))}
+              {trustItems.map((item) => {
+                const Icon = iconMap[item.icon];
+                return (
+                  <div key={item.id} className="flex items-center gap-2.5">
+                    <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-brand-soft text-brand">
+                      <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
+                    </span>
+                    <span className="text-sm font-semibold text-navy">{item.label}</span>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
