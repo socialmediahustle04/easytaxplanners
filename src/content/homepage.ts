@@ -20,6 +20,8 @@ export const hero = {
       ctaLabel: "Start Filing Now",
       href: "/services/income-tax-filing",
       tone: "brand",
+      // Shown as a hover/focus ribbon at the top edge of the card.
+      activeLabel: "Guided filing with CA review",
     },
     {
       icon: "users",
@@ -28,6 +30,7 @@ export const hero = {
       ctaLabel: "Hire an Expert",
       href: "/contact",
       tone: "brand",
+      activeLabel: "Handled by a CA-led team",
     },
   ],
   proofStats: [

@@ -96,16 +96,25 @@ export function Hero() {
                     key={card.href}
                     href={card.href}
                     aria-label={`${card.title} - ${card.ctaLabel}`}
-                    className="group flex min-h-[180px] flex-col rounded-[1.25rem] border border-line bg-surface p-5 shadow-[var(--shadow-card-hover)] transition-all duration-200 hover:-translate-y-1"
+                    className="group relative flex min-h-[216px] flex-col rounded-[1.25rem] border border-line bg-surface p-5 shadow-[var(--shadow-card)] transition-all duration-200 hover:-translate-y-1 hover:border-brand/50 hover:shadow-[var(--shadow-card-hover)] focus-visible:-translate-y-1 focus-visible:border-brand focus-visible:shadow-[var(--shadow-card-hover)]"
                   >
-                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-soft text-brand">
-                      <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
+                    <span
+                      className="pointer-events-none absolute -top-3 left-5 inline-flex translate-y-1 items-center gap-1.5 whitespace-nowrap rounded-full bg-gradient-to-r from-brand to-indigo-600 px-3 py-1 text-xs font-semibold text-white opacity-0 shadow-[0_8px_20px_-6px_rgba(37,99,235,0.6)] transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
+                    >
+                      <CheckCircle2 className="h-3.5 w-3.5" strokeWidth={2} aria-hidden="true" />
+                      {card.activeLabel}
                     </span>
-                    <p className="mt-4 text-lg font-extrabold leading-tight text-navy lg:text-xl">{card.title}</p>
-                    <p className="mt-1 text-sm font-semibold leading-tight text-muted">
-                      {card.subtitle}
-                    </p>
-                    <span className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-5 py-3 text-sm font-extrabold text-white transition-colors duration-200 group-hover:bg-brand-dark">
+
+                    <span className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-soft text-brand ring-1 ring-brand/10 transition-transform duration-200 group-hover:scale-105">
+                      <Icon className="h-6 w-6" strokeWidth={1.75} aria-hidden="true" />
+                    </span>
+
+                    <div className="mt-4">
+                      <p className="text-xl font-extrabold leading-tight text-navy">{card.title}</p>
+                      <p className="mt-2 text-[15px] font-medium leading-normal text-muted">{card.subtitle}</p>
+                    </div>
+
+                    <span className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-xl bg-brand px-5 py-3.5 text-sm font-extrabold text-white transition-colors duration-200 group-hover:bg-brand-dark">
                       {card.ctaLabel}
                       <ArrowRight
                         className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"

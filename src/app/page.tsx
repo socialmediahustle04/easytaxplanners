@@ -49,7 +49,7 @@ export default function HomePage() {
         />
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {homepageOfferings.map((offering, index) => (
-            <Reveal key={offering.slug} delay={index * 0.05}>
+            <Reveal key={offering.slug} delay={index * 0.05} className="h-full">
               <ServiceCard offering={offering} />
             </Reveal>
           ))}
