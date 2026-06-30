@@ -39,8 +39,8 @@ const imagePositions = [
 ] as const;
 
 const copyOverlayStyles: Partial<Record<WhyChooseTone, string>> = {
-  teal: "right-[7%] top-1/2 w-[37%] -translate-y-1/2",
-  indigo: "right-[8%] top-1/2 w-[38%] -translate-y-1/2",
+  teal: "right-[4.5%] top-1/2 w-[34%] -translate-y-1/2",
+  indigo: "right-[5.5%] top-1/2 w-[35%] -translate-y-1/2",
 };
 
 export function WhyChooseSection() {
