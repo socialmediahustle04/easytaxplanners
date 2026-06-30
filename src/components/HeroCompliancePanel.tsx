@@ -56,11 +56,11 @@ export function HeroCompliancePanel({ className }: { className?: string }) {
     <div
       aria-hidden="true"
       className={cn(
-        "select-none rounded-2xl border border-line bg-surface p-5 shadow-[var(--shadow-card-hover)]",
+        "select-none rounded-2xl border border-line bg-surface p-4 shadow-[var(--shadow-card-hover)]",
         className,
       )}
     >
-      <div className="relative min-h-[220px]">
+      <div className="relative min-h-[176px]">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={index}
@@ -73,7 +73,7 @@ export function HeroCompliancePanel({ className }: { className?: string }) {
               {state.heading}
             </h3>
 
-            <ul className="mt-7 space-y-3">
+            <ul className="mt-5 space-y-2">
               {rows.map((row, i) => {
                 const RowIcon = row.Icon;
                 const status = state.statuses[i];
@@ -81,7 +81,7 @@ export function HeroCompliancePanel({ className }: { className?: string }) {
                   <li
                     key={row.label}
                     className={cn(
-                      "flex items-center justify-between rounded-md px-4 py-3 text-sm font-semibold text-ink",
+                      "flex items-center justify-between rounded-md px-4 py-2 text-sm font-semibold text-ink",
                       status === "done" && "bg-success-soft",
                       status === "active" && "bg-[#f1efff]",
                       status === "pending" && "bg-[#f5f3ff]",

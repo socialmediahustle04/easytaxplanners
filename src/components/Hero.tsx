@@ -31,13 +31,13 @@ export function Hero() {
 
   return (
     <section className="relative overflow-hidden border-b border-line bg-surface">
-      <Container className="relative z-10 pt-12 pb-0 md:pt-16 lg:pt-20">
-        <div className="grid min-w-0 items-start gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-10">
+      <Container className="relative z-10 pt-7 pb-0 md:pt-8 lg:pt-9">
+        <div className="grid min-w-0 items-start gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8">
           <motion.div
             variants={groupVariants}
             initial={false}
             animate={reduce ? undefined : "show"}
-            className="min-w-0 max-w-2xl lg:pt-12"
+            className="min-w-0 max-w-2xl lg:pt-1"
           >
             <motion.div variants={itemVariants}>
               <div className="inline-flex max-w-full flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-line bg-surface px-4 py-2 text-sm font-semibold text-navy shadow-[var(--shadow-card)]">
@@ -60,7 +60,7 @@ export function Hero() {
 
             <motion.h1
               variants={itemVariants}
-              className="mt-6 max-w-full text-5xl font-extrabold leading-[1.06] tracking-normal text-[#2b394f] sm:text-6xl lg:text-[58px]"
+              className="mt-4 max-w-full text-4xl font-extrabold leading-[1.08] tracking-normal text-[#2b394f] sm:text-5xl lg:text-[50px]"
             >
               <span className="block">File ITR in minutes</span>
               <span className="block">
@@ -68,8 +68,8 @@ export function Hero() {
               </span>
             </motion.h1>
 
-            <motion.div variants={itemVariants} className="mt-6">
-              <span className="inline-flex items-center gap-2 rounded-lg bg-success-soft px-4 py-2.5 text-lg font-extrabold text-success">
+            <motion.div variants={itemVariants} className="mt-3">
+              <span className="inline-flex items-center gap-2 rounded-lg bg-success-soft px-4 py-2 text-base font-extrabold text-success sm:text-lg">
                 <CheckCircle2 className="h-4 w-4" strokeWidth={2} aria-hidden="true" />
                 {hero.reassurance}
               </span>
@@ -77,18 +77,18 @@ export function Hero() {
 
             <motion.div
               variants={itemVariants}
-              className="mt-5 flex max-w-xl items-center gap-4 rounded-xl border border-line bg-surface px-5 py-4 text-sm text-navy shadow-[var(--shadow-card)]"
+              className="mt-3 flex max-w-xl items-center gap-4 rounded-xl border border-line bg-surface px-4 py-3 text-sm text-navy shadow-[var(--shadow-card)]"
             >
-              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-brand/20 bg-brand-soft text-brand">
+              <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-brand/20 bg-brand-soft text-brand">
                 <LifeBuoy className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
               </span>
-              <span className="h-10 w-px bg-line" aria-hidden="true" />
+              <span className="h-9 w-px bg-line" aria-hidden="true" />
               <span className="min-w-0 leading-relaxed">
                 <strong>EasyTax Notice Support</strong> | {hero.support}
               </span>
             </motion.div>
 
-            <motion.div variants={cardsVariants} className="mt-12 grid min-w-0 gap-7 sm:grid-cols-2">
+            <motion.div variants={cardsVariants} className="mt-6 grid min-w-0 gap-4 sm:grid-cols-2">
               {hero.actionCards.map((card) => {
                 const Icon = iconMap[card.icon];
                 return (
@@ -96,16 +96,16 @@ export function Hero() {
                     key={card.href}
                     href={card.href}
                     aria-label={`${card.title} - ${card.ctaLabel}`}
-                    className="group flex min-h-[260px] flex-col rounded-[1.75rem] border border-line bg-surface p-8 shadow-[var(--shadow-card-hover)] transition-all duration-200 hover:-translate-y-1"
+                    className="group flex min-h-[180px] flex-col rounded-[1.25rem] border border-line bg-surface p-5 shadow-[var(--shadow-card-hover)] transition-all duration-200 hover:-translate-y-1"
                   >
-                    <span className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-brand-soft text-brand">
-                      <Icon className="h-7 w-7" strokeWidth={1.75} aria-hidden="true" />
+                    <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-soft text-brand">
+                      <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden="true" />
                     </span>
-                    <p className="mt-8 text-3xl font-extrabold leading-tight text-navy">{card.title}</p>
-                    <p className="mt-3 text-2xl font-semibold leading-tight text-muted">
+                    <p className="mt-4 text-lg font-extrabold leading-tight text-navy lg:text-xl">{card.title}</p>
+                    <p className="mt-1 text-sm font-semibold leading-tight text-muted">
                       {card.subtitle}
                     </p>
-                    <span className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-5 py-4 text-base font-extrabold text-white transition-colors duration-200 group-hover:bg-brand-dark">
+                    <span className="mt-auto inline-flex w-full items-center justify-center gap-2 rounded-lg bg-brand px-5 py-3 text-sm font-extrabold text-white transition-colors duration-200 group-hover:bg-brand-dark">
                       {card.ctaLabel}
                       <ArrowRight
                         className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
@@ -122,7 +122,7 @@ export function Hero() {
             initial={false}
             animate={{ opacity: 1, y: 0 }}
             transition={reduce ? undefined : visualTransition}
-            className="lg:pt-10"
+            className="lg:pt-1"
           >
             <HeroVisual />
           </motion.div>
@@ -133,9 +133,9 @@ export function Hero() {
         initial={false}
         animate={{ opacity: 1, y: 0 }}
         transition={reduce ? undefined : proofTransition}
-        className="relative z-0 -mt-32 bg-[#f4f5ff]"
+        className="relative z-0 -mt-24 bg-[#f4f5ff] lg:-mt-20"
       >
-        <Container className="grid gap-8 py-12 sm:grid-cols-2 lg:pl-[48%]">
+        <Container className="grid gap-8 py-7 sm:grid-cols-2 lg:pl-[48%]">
           {hero.proofStats.map((stat) => {
             const Icon = iconMap[stat.icon];
             return (
