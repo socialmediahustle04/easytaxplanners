@@ -1,4 +1,9 @@
-import type { HelpSegment, ProblemPrompt, ProcessStep } from "./types";
+import type {
+  HelpSegment,
+  ProblemPrompt,
+  ProcessStep,
+  WhyChooseContent,
+} from "./types";
 
 // Homepage section content kept out of the page component so copy is easy to edit.
 
@@ -127,3 +132,67 @@ export const problemPrompts: ProblemPrompt[] = [
     description: "Begin with the correct checklist and professional handling.",
   },
 ];
+
+
+// "Why people choose EasyTaxPlanners" carousel section.
+// Original EasyTaxPlanners content and assets. Inspired only by the general
+// structure/feel of large tax platforms, never their copy, code, or imagery.
+export const whyChoose: WhyChooseContent = {
+  eyebrow: "Why EasyTaxPlanners",
+  title: "Why people choose EasyTaxPlanners",
+  subtitle:
+    "CA-led review, clear next steps, and real human support, from ITR filing to GST, ROC, and registrations.",
+  cards: [
+    {
+      tone: "blue",
+      icon: "shieldCheck",
+      tag: "CA-led review",
+      title: "CA review before you file",
+      body: "Your return is checked for missing details, mismatches, and the right filing path before submission.",
+      image: "/images/generated/why-choose-accuracy.png",
+      imageAlt:
+        "Illustration of a chartered accountant reviewing an income tax return before filing",
+      points: [
+        "Right ITR form for your income",
+        "AIS / Form 26AS mismatch checks",
+        "Reviewed before final submission",
+      ],
+    },
+    {
+      tone: "teal",
+      icon: "listChecks",
+      tag: "Clear next steps",
+      title: "Tax clarity, not panic",
+      body: "We explain what changed, what documents are needed, and what the next step should be.",
+      image: "/images/generated/why-choose-refund.png",
+      imageAlt:
+        "Illustration of clear, step-by-step tax guidance with a document checklist",
+      points: [
+        "Plain-language guidance",
+        "Clear document checklist upfront",
+        "Notice support before you pay twice",
+      ],
+    },
+    {
+      tone: "indigo",
+      icon: "messageCircle",
+      tag: "WhatsApp-first help",
+      title: "Human support when it matters",
+      body: "Get WhatsApp-first guidance for notices, GST, ROC filings, registrations, and business compliance.",
+      image: "/images/generated/why-choose-support.png",
+      imageAlt:
+        "Illustration of WhatsApp-first human support for tax and compliance questions",
+      points: [
+        "A real person on WhatsApp",
+        "GST, ROC & registration help",
+        "Practical follow-up after filing",
+      ],
+    },
+  ],
+  cta: {
+    title: "Get CA-led help before filing",
+    subtitle: "Share your situation and we'll guide the right next step.",
+    ctaLabel: "Get Compliance Help",
+    href: "/contact",
+  },
+};

@@ -9,6 +9,7 @@ import { TrustBadge } from "@/components/TrustBadge";
 import { ProcessSteps } from "@/components/ProcessSteps";
 import { ResourceCard } from "@/components/ResourceCard";
 import { CTASection } from "@/components/CTASection";
+import { WhyChooseSection } from "@/components/WhyChooseSection";
 import { Reveal } from "@/components/Reveal";
 import { Button } from "@/components/Button";
 import { iconMap } from "@/lib/icon-map";
@@ -55,6 +56,9 @@ export default function HomePage() {
           ))}
         </div>
       </Section>
+
+      {/* Why people choose EasyTaxPlanners */}
+      <WhyChooseSection />
 
       {/* Who we help */}
       <Section background="surface">

@@ -76,6 +76,39 @@ export interface ProblemPrompt {
   description: string;
 }
 
+// Tones reuse the existing soft service-card palette so the section stays
+// cohesive with the rest of the homepage.
+export type WhyChooseTone = "blue" | "teal" | "indigo";
+
+export interface WhyChooseCard {
+  tone: WhyChooseTone;
+  icon: IconKey;
+  /** Short pill label above the title. */
+  tag: string;
+  title: string;
+  body: string;
+  /** Path under /public to an EasyTaxPlanners-original illustration. */
+  image: string;
+  /** Descriptive alt text for accessibility. */
+  imageAlt: string;
+  points: string[];
+}
+
+export interface WhyChooseCta {
+  title: string;
+  subtitle: string;
+  ctaLabel: string;
+  href: string;
+}
+
+export interface WhyChooseContent {
+  eyebrow: string;
+  title: string;
+  subtitle: string;
+  cards: WhyChooseCard[];
+  cta: WhyChooseCta;
+}
+
 export type ResourceCategory =
   | "Income Tax"
   | "GST"
