@@ -16,7 +16,21 @@ Source files (originals were created in `~/Downloads/easy-tax/` and left untouch
 | `easy2.png` | `why-choose-refund.png` | Card 2 — Tax clarity, not panic (teal) |
 | `easy-3.png` | `why-choose-support.png` | Card 3 — Human support when it matters (indigo) |
 
-Each card uses `next/image` with `object-contain` inside a rounded, tone-tinted visual panel so the full composition stays visible without cropping faces, hands, or document details.
+Each card uses `next/image` with `object-cover` inside a rounded, tone-tinted visual panel. The source art is normalised to a uniform **16:9** ratio (see _Post-processing_ below) so `object-cover` fills the panel edge-to-edge with no letterboxing or corner artefacts, while preserving the full composition (faces, hands, and document details).
+
+## Post-processing (applied to the copied assets)
+
+The raw generations were inconsistent: `why-choose-accuracy.png` was ~16:9 with near-white rounded-corner fill, while `why-choose-refund.png` and `why-choose-support.png` were ~21:9 with **black** rounded-corner fill. On a light pastel panel the black corners rendered as dark triangles, and the differing ratios letterboxed unevenly across slides.
+
+A one-off normalisation (Pillow) was run on the **copied** assets only (the `~/Downloads/easy-tax/` originals are never modified):
+
+1. Re-copy each pristine source from `~/Downloads/easy-tax/` into `public/images/generated/`.
+2. Flood-fill the four corners with the image's interior background colour to remove the baked white/black rounded-corner fill.
+3. Pad the short axis with the same interior background colour so every asset becomes exactly **16:9** (1.78). Padding is seamless because it matches the image background.
+
+Result (all 16:9): `why-choose-accuracy.png` 1672×941, `why-choose-refund.png` 1916×1078, `why-choose-support.png` 1916×1078.
+
+If assets are regenerated, re-run this normalisation (or generate them at a clean 16:9 with no corner fill) so the carousel stays consistent.
 
 ## Prompts (used / intended for regeneration)
 
@@ -28,7 +42,7 @@ Shared style guidance for every prompt:
 - Friendly, professional Indian small-business / individual context.
 - Soft rounded shapes, subtle depth, no harsh gradients, no neon, no 3D render look.
 - No real logos, no brand names, no readable competitor UI, no stock-photo realism.
-- Wide, landscape-friendly composition with the key subject centred so it survives `object-contain`.
+- Wide, landscape-friendly composition (target a clean 16:9 frame) with the key subject centred and generous background padding, so it reads well filling the panel.
 
 ### 1. `why-choose-accuracy.png` (Card 1, blue — "CA review before you file")
 
@@ -45,5 +59,5 @@ Shared style guidance for every prompt:
 ## Notes
 
 - These are original EasyTaxPlanners assets. Do not introduce competitor branding when regenerating.
-- Keep compositions wide and centred so the carousel's `object-contain` rendering shows the full illustration on both desktop and mobile.
-- If a regenerated asset changes aspect ratio significantly, re-check the card's visual panel aspect ratio (`aspect-[16/10]`) and object positioning in `WhyChooseSection.tsx`.
+- Keep compositions wide and centred so the carousel shows the full illustration on both desktop and mobile.
+- Prefer generating at a clean **16:9** ratio with a solid pastel background and **no baked rounded-corner fill** (the card applies its own rounding via CSS). If a regenerated asset differs, re-run the normalisation in _Post-processing_ above, or re-check the card's visual panel ratio (`aspect-[16/9]`) and `object-cover` positioning in `WhyChooseSection.tsx`.

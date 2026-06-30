@@ -195,20 +195,22 @@ export function WhyChooseSection() {
                       tone.card,
                     )}
                   >
-                    {/* Visual panel */}
+                    {/* Visual panel. Generated art is normalised to 16:9 with a
+                        baked pastel background, so object-cover fills the panel
+                        edge-to-edge with no letterboxing or corner artefacts. */}
                     <div
                       className={cn(
                         "overflow-hidden rounded-2xl ring-1",
                         tone.panel,
                       )}
                     >
-                      <div className="relative aspect-[16/10]">
+                      <div className="relative aspect-[16/9]">
                         <Image
                           src={card.image}
                           alt={card.imageAlt}
                           fill
                           sizes="(max-width: 1024px) 88vw, 420px"
-                          className="object-contain"
+                          className="object-cover"
                         />
                       </div>
                     </div>
