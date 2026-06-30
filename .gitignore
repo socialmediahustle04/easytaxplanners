@@ -30,3 +30,4 @@ d_home_full.png
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+.vercel
